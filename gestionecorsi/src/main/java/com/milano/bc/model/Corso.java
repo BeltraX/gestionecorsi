@@ -10,6 +10,7 @@ public class Corso {
 	private double costo;
 	private String commento;
 	private String aula;
+	private int codDocente;
 	
 	public int getCodice() {
 		return codice;
@@ -52,5 +53,11 @@ public class Corso {
 	}
 	public void setAula(String aula) {
 		this.aula = aula;
+	}
+	public int getCodDocente() {
+		return codDocente;
+	}
+	public void setCodDocente(int codDocente) {
+		this.codDocente = codDocente;
 	}
 }
