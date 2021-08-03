@@ -20,7 +20,4 @@ public interface DAOConstants {
 	String COUNT_DOCENTI = "selct count(coddocente) from corso where coddocente= ?";
 
 	String DELETE_CORSO = "Delete from corso where codcorso = ?";
-	String DELETE_UTENTE = "Delete from utente where username = ?";
-	String DELETE_ARTICOLO = "Delete from articolo where id_articolo = ?";
-
 }
