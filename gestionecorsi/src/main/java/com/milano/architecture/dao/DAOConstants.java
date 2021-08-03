@@ -17,6 +17,7 @@ public interface DAOConstants {
 	String SELECT_DATA_ULTIMOCORSO = "select max(datainiziocorso) from corso";
 	String SELECT_TOT_CORSISTI = "select count(*) from corsista";
 	String COUNT_COMMENTI = "select count(commenticorso) from corso";
+	String COUNT_DOCENTI = "selct count(coddocente) from corso where coddocente= ?";
 
 	String DELETE_CORSO = "Delete from corso where codcorso = ?";
 	String DELETE_UTENTE = "Delete from utente where username = ?";
