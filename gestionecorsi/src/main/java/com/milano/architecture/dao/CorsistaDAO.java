@@ -12,12 +12,12 @@ import javax.sql.rowset.RowSetProvider;
 import com.milano.bc.model.Corsista;
 
 public class CorsistaDAO implements DAOConstants {
-	private  CachedRowSet rowSet;
-	
+	private CachedRowSet rowSet;
+
 	public static CorsistaDAO getFactory() throws SQLException {
 		return new CorsistaDAO();
-	}	
-	
+	}
+
 	private CorsistaDAO() throws SQLException {
 		rowSet = RowSetProvider.newFactory().createCachedRowSet();
 	}
@@ -67,7 +67,6 @@ public class CorsistaDAO implements DAOConstants {
 
 	public void delete(Connection conn, Corsista a) throws SQLException {
 		PreparedStatement ps;
-
 		ps = conn.prepareStatement(DELETE_CORSISTA);
 		ps.setInt(1, a.getCodCorsista());
 		ps.execute();
