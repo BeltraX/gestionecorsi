@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.milano.bc.model.Amministratore;
 import com.milano.bc.model.Docente;
 
 public class DocenteDAO implements DAOConstants{

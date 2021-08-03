@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
@@ -139,5 +141,32 @@ public class CorsoDAO implements DAOConstants{
 		ResultSet rs = stmt.executeQuery(COUNT_COMMENTI);
 		rs.next();
 		return rs.getInt(1);
+	}
+	
+	public Corso[] getCorsiDisp(Connection conn) throws SQLException{
+		Statement stmt = conn.createStatement(
+				ResultSet.TYPE_SCROLL_INSENSITIVE, 
+				ResultSet.CONCUR_READ_ONLY);
+		ResultSet rs = stmt.executeQuery(SELECT_CORSI);
+		List<Corso> corsi = new ArrayList<Corso>();
+		while(rs.next()) {
+			PreparedStatement ps = conn.prepareStatement(COUNT_PARTECIP_BYID);
+			ps.setInt(1, rs.getInt(1));
+			ResultSet rs2 = ps.executeQuery();
+			rs2.next();
+			int nPartecipanti = rs2.getInt(1);
+			if(nPartecipanti < 13) {
+				PreparedStatement prep = conn.prepareStatement(SELECT_CORSI_BYID);
+				prep.setInt(1, rs.getInt(1));
+				ResultSet rs3 = prep.executeQuery();
+				rs3.next();
+				corsi.add((Corso)rs3.getObject(1));
+			}
+		}
+		Corso[] arrayC = new Corso[corsi.size()];
+		for(int i = 0; i < arrayC.length; i++) {
+			arrayC[i] = corsi.get(i);
+		}
+		return arrayC;
 	}
 }

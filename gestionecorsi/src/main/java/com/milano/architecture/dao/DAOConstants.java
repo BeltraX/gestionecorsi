@@ -5,6 +5,7 @@ public interface DAOConstants {
 	String SELECT_DOCENTI = "select * from docente";
 	String SELECT_CORSI = "select * from corso";
 	String SELECT_ADMIN = "select * from amministratore";
+	String SELECT_CORSI_BYID = "select * from corso where codcorso = ?";
 
 	String SELECT_CORSISTASEQ = "select corsista_seq.nextval from dual";
 	String SELECT_CORSOSEQ = "select corso_seq.nextval from dual";
