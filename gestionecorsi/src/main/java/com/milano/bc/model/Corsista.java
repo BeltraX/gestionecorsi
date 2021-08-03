@@ -4,7 +4,7 @@ public class Corsista {
 	private int codCorsista;
 	private String nomeCorsista;
 	private String cognomeCorsista;
-	private boolean precedentiformativi;
+	private int precedentiformativi;
 
 	public int getCodCorsista() {
 		return codCorsista;
@@ -30,11 +30,11 @@ public class Corsista {
 		this.cognomeCorsista = cognomeCorsista;
 	}
 
-	public boolean isPrecedentiformativi() {
+	public int getPrecedentiformativi() {
 		return precedentiformativi;
 	}
 
-	public void setPrecedentiformativi(boolean precedentiformativi) {
+	public void setPrecedentiformativi(int precedentiformativi) {
 		this.precedentiformativi = precedentiformativi;
 	}
 

@@ -7,10 +7,10 @@ create table amministratore(
 );
 
 create table corsista(
+	codcorsista int,
     nomecorsista varchar2(30) not null,
     cognomecorsista varchar2(30) not null,
-    codcorsista int,
-    precedentiformativi int default 0,
+    precedentiformativi int,
     constraint p_corsista primary key(codcorsista)
 );
 
