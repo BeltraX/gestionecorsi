@@ -23,7 +23,7 @@ class CorsoValidatorTest {
 		corso.setCodice(1);
 		corso.setNome("Java");
 		corso.setDataInizio(new GregorianCalendar(2020,10,1).getTime());
-		corso.setDataFine(new GregorianCalendar(2020,10,2).getTime());
+		corso.setDataFine(new GregorianCalendar(2020,10,3).getTime());
 		corso.setCosto(20.99);
 		corso.setCommento("");
 		corso.setAula("12inf");

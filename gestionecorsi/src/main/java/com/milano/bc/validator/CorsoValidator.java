@@ -26,7 +26,7 @@ public class CorsoValidator implements DAOConstants {
 	public boolean checkDataFine(Corso corso) {
 		if (Pattern.matches("^(0[1-9]|[12][0-9]|3[01])\\/(0[1-9]|1[0-2])\\/([12][0-9]{3})$",
 				format.format(corso.getDataFine()))
-				& corso.getDataFine().getTime() - corso.getDataInizio().getTime() >= 2)
+				& corso.getDataFine().getTime() - corso.getDataInizio().getTime() >= 86400000*2)
 			return true;
 		else
 			return false;
