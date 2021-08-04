@@ -15,6 +15,7 @@ CorsoBC cbc = new CorsoBC();
 </head>
 <body>
 	<jsp:include page="nav.jsp" />
+	
 	<div class="container">
 		<table class="table table-hover" style="width: 100%;">
 			<thead>
