@@ -53,5 +53,6 @@ CorsoBC cbc = new CorsoBC();
 			</tbody>
 		</table>
 	</div>
+<jsp:include page="footer.html"/>
 </body>
 </html>
