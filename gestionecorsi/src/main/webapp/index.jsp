@@ -20,6 +20,14 @@
 	<div class="page-header" id="page-header">
 		<h3>Inserire i dati per effettuare il login</h3>
 	</div>
+	<%
+		if(counter > 1) {
+			int rimasti = 6 - counter;
+	%>
+	<h3>Reinserisci i dati correttamente, hai ancora <%=rimasti%> tentativi</h3>
+	<%
+		}
+	%>
 	
 	<form action="/<%=application.getServletContextName()%>/controlloAdmin" method="post"
 	id="userForm" class="form-horizontal">
