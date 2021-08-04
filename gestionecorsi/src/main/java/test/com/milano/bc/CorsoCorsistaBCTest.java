@@ -1,4 +1,4 @@
-package test.com.milano.architecture.dao;
+package test.com.milano.bc;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -11,23 +11,24 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.milano.architecture.dao.CorsistaDAO;
-import com.milano.architecture.dao.CorsoCorsistaDAO;
 import com.milano.architecture.dao.CorsoDAO;
 import com.milano.architecture.dbaccess.DBAccess;
+import com.milano.bc.CorsoCorsistaBC;
 import com.milano.bc.model.Corsista;
 import com.milano.bc.model.Corso;
 import com.milano.bc.model.CorsoCorsista;
 
-class CorsoCorsistaDAOTest {
-
+class CorsoCorsistaBCTest {
 	private static Corsista corsista;
 	private static Corso corso;
 	private static CorsoCorsista cc;
+	private static CorsoCorsistaBC corsoCorsistaBC;
 	private static Connection conn;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		conn = DBAccess.getConnection();
+		corsoCorsistaBC = new CorsoCorsistaBC();
 		corso = new Corso();
 		corso.setCodice(1);
 		corso.setNome("JAVA");
@@ -45,23 +46,22 @@ class CorsoCorsistaDAOTest {
 		corsista.setPrecedentiformativi(1);
 		
 		cc = new CorsoCorsista();
-		cc.setCodCorsista(corsista.getCodCorsista());
-		cc.setCodCorso(corso.getCodice());
+		cc.setCodCorso(1);
+		cc.setCodCorsista(1);
 	}
 
 	@Test
-	void testCreate() {
+	void test() {
 		try {
 			CorsoDAO.getFactory().createCorso(conn, corso);
 			CorsistaDAO.getFactory().create(conn, corsista);
-			CorsoCorsistaDAO.getFactory().create(conn, cc);
-			System.out.println("Creato cc");
+			corsoCorsistaBC.create(cc);
 		} catch (SQLException exc) {
 			exc.printStackTrace();
 			fail(exc.getMessage());
 		}
 	}
-
+	
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		try {
@@ -75,5 +75,6 @@ class CorsoCorsistaDAOTest {
 			fail(exc.getMessage());
 		}
 	}
+	
 
 }
