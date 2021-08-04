@@ -35,8 +35,8 @@ class CorsoDAOTest {
 		corso1 = new Corso();
 		corso1.setCodice(1);
 		corso1.setNome("JAVA");
-		corso1.setDataInizio(new GregorianCalendar(2020,10,1).getTime());
-		corso1.setDataFine(new GregorianCalendar(2020,10,10).getTime());
+		corso1.setDataInizio(new GregorianCalendar(2021,10,1).getTime());
+		corso1.setDataFine(new GregorianCalendar(2021,10,10).getTime());
 		corso1.setCosto(1000);
 		corso1.setCommento("bello");
 		corso1.setAula("B123");
@@ -45,8 +45,8 @@ class CorsoDAOTest {
 		corso2 = new Corso();
 		corso2.setCodice(2);
 		corso2.setNome("MINECRAFT");
-		corso2.setDataInizio(new GregorianCalendar(2020,11,1).getTime());
-		corso2.setDataFine(new GregorianCalendar(2020,11,12).getTime());
+		corso2.setDataInizio(new GregorianCalendar(2022,11,1).getTime());
+		corso2.setDataFine(new GregorianCalendar(2022,11,12).getTime());
 		corso2.setCosto(1000);
 		corso2.setCommento("bello");
 		corso2.setAula("B123");
@@ -104,8 +104,8 @@ class CorsoDAOTest {
 			corso1 = new Corso();
 			corso1.setCodice(1);
 			corso1.setNome("SQL");
-			corso1.setDataInizio(new GregorianCalendar(1990,10,1).getTime());
-			corso1.setDataFine(new GregorianCalendar(2020,10,10).getTime());
+			corso1.setDataInizio(new GregorianCalendar(2019,10,1).getTime());
+			corso1.setDataFine(new GregorianCalendar(2019,10,20).getTime());
 			corso1.setCosto(1000);
 			corso1.setCommento("bellino");
 			corso1.setAula("B123");

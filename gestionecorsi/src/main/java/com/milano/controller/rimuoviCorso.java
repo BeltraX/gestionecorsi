@@ -28,7 +28,7 @@ public class rimuoviCorso extends HttpServlet {
 			exc.printStackTrace();
 			throw new ServletException();
 		}
-		response.sendRedirect("carrello.jsp");
+		response.sendRedirect("eliminaCorsi.jsp");
 	}
 
 }
