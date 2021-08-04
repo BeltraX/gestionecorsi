@@ -19,16 +19,17 @@ body {
 footer nav {
 	float: left;
 	padding: 30px;
-	background-color: #808080;
-	color: #111;
+	background-color: #111;
+	color: #808080;
 }
+
 footer {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
 	height: 180px;
-	background-color: #808080;
-	color: #111;
+	background-color: #111;
+	color: #808080;
 }
 
 p.copyright {

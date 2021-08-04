@@ -18,7 +18,7 @@ CorsoBC cbc = new CorsoBC();
 	href="/<%=application.getServletContextName()%>/css/style.css">
 </head>
 <body>
-	<jsp:include page="nav.jsp"/>
+	<jsp:include page="nav.jsp" />
 	<div class="container">
 
 		<table class="table table-hover" style="width: 100%;">
@@ -53,6 +53,8 @@ CorsoBC cbc = new CorsoBC();
 			</tbody>
 		</table>
 	</div>
-<jsp:include page="footer.html"/>
+	<footer>
+		<%@include file="footer.html"%>
+	</footer>
 </body>
 </html>
