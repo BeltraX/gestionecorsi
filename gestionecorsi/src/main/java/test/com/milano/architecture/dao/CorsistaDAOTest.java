@@ -54,6 +54,7 @@ class CorsistaDAOTest {
 		try {
 			int x = CorsistaDAO.getFactory().getTot(conn);
 			System.out.println(x);
+			assertNotNull(x);
 		} catch (SQLException exc) {
 			exc.printStackTrace();
 			fail(exc.getMessage());

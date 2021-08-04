@@ -19,10 +19,8 @@ public class CorsistaBC {
 	}
 
 	public void create(Corsista corsista) throws SQLException, ClassNotFoundException, IOException {
-
 		corsista.setCodCorsista(idGen.getNextId());
 		CorsistaDAO.getFactory().create(conn, corsista);
-
 	}
 
 	public void delete(Corsista articolo) throws SQLException {
