@@ -7,6 +7,9 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="home.jsp">Corsi</a>
+			<a class="navbar-brand" href="inserisciCorsisti.jsp">Inserisci corsisti</a>
+			<a class="navbar-brand" href="eliminaCorsi.jsp">Elimina corsi</a>
+			<a class="navbar-brand" href="statistiche.jsp">Statistiche</a>
 		</div>
 		<div class="collapse navbar-collapse" id="menu">
 			<%

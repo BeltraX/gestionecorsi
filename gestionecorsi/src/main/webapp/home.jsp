@@ -24,8 +24,13 @@ CorsoBC cbc = new CorsoBC();
 		<table class="table table-hover" style="width: 100%;">
 			<thead>
 				<tr>
-					<th style="width: 200px;">Codice</th>
 					<th style="width: 200px;">Nome</th>
+					<th style="width: 200px;">Data inizio</th>
+					<th style="width: 200px;">Data fine</th>
+					<th style="width: 200px;">Costo</th>
+					<th style="width: 200px;">Commento</th>
+					<th style="width: 200px;">Aula</th>
+					<th style="width: 200px;">Codice docente</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,22 +39,13 @@ CorsoBC cbc = new CorsoBC();
 				for (Corso i : corsi) {
 				%>
 				<tr>
-					<%
-					int codice = i.getCodice();
-					String nome = i.getNome();
-					%>
-					<td><%=codice%></td>
-					<td><%=nome%></td>
-					<td>
-						<form
-							action="/<%=application.getServletContextName()%>/aggiungicarrello"
-							method="post">
-							<input type="hidden" name="id" value="<%=codice%>">
-							<button type="submit" class="btn btn-primary btn-xm">
-								<span class="glyphicon glyphicon-pencil"></span>
-							</button>
-						</form>
-					</td>
+					<td><%=i.getNome()%></td>
+					<td><%=i.getDataInizio()%></td>
+					<td><%=i.getDataFine()%></td>
+					<td><%=i.getCosto()%></td>
+					<td><%=i.getCommento()%></td>
+					<td><%=i.getAula()%></td>
+					<td><%=i.getCodDocente()%></td>
 				</tr>
 				<%
 				}
