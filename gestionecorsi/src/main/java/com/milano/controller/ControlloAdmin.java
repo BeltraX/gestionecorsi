@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.milano.bc.AmministratoreBC;
 import com.milano.bc.model.Amministratore;
@@ -23,6 +24,7 @@ public class ControlloAdmin extends HttpServlet {
 		String cognome = request.getParameter("cognome");
 		int codice = Integer.parseInt(request.getParameter("codice"));
 		
+		HttpSession session = request.getSession();
 		ServletContext application = request.getServletContext();
 		int tentativi = (int)application.getAttribute("tentativi");
 		
@@ -38,6 +40,7 @@ public class ControlloAdmin extends HttpServlet {
 				admin = adminBC.getAmministratori();
 				for (Amministratore a : admin) {
 					if (utente.getNome().equals(a.getNome()) && utente.getCognome().equals(a.getCognome()) && utente.getCodice() == a.getCodice()) {
+						session.setAttribute("username",utente.getNome());
 						redirect = "home.jsp";
 						break;
 					} else {
