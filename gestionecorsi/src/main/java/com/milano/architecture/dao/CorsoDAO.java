@@ -150,17 +150,27 @@ public class CorsoDAO implements DAOConstants{
 		ResultSet rs = stmt.executeQuery(SELECT_CORSI);
 		List<Corso> corsi = new ArrayList<Corso>();
 		while(rs.next()) {
+			int codCorso = rs.getInt(1);
 			PreparedStatement ps = conn.prepareStatement(COUNT_PARTECIP_BYID);
-			ps.setInt(1, rs.getInt(1));
+			ps.setInt(1, codCorso);
 			ResultSet rs2 = ps.executeQuery();
 			rs2.next();
 			int nPartecipanti = rs2.getInt(1);
 			if(nPartecipanti < 13) {
-				PreparedStatement prep = conn.prepareStatement(SELECT_CORSI_BYID);
-				prep.setInt(1, rs.getInt(1));
-				ResultSet rs3 = prep.executeQuery();
+				PreparedStatement ps2 = conn.prepareStatement(SELECT_CORSI_BYID);
+				ps2.setInt(1, codCorso);
+				ResultSet rs3 = ps2.executeQuery();
 				rs3.next();
-				corsi.add((Corso)rs3.getObject(1));
+				Corso c = new Corso();
+				c.setCodice(rs3.getInt(1));
+				c.setNome(rs3.getString(2));
+				c.setDataInizio(rs3.getDate(3));
+				c.setDataFine(rs3.getDate(4));
+				c.setCosto(rs3.getDouble(5));
+				c.setCommento(rs3.getString(6));
+				c.setAula(rs3.getString(7));
+				c.setCodDocente(rs3.getInt(8));
+				corsi.add(c);
 			}
 		}
 		Corso[] arrayC = new Corso[corsi.size()];

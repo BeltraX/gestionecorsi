@@ -1,6 +1,7 @@
 package test.com.milano.architecture.dao;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,10 +12,13 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import com.milano.architecture.dao.CorsistaDAO;
+import com.milano.architecture.dao.CorsoCorsistaDAO;
 import com.milano.architecture.dao.CorsoDAO;
 import com.milano.architecture.dbaccess.DBAccess;
 import com.milano.bc.model.Corsista;
 import com.milano.bc.model.Corso;
+import com.milano.bc.model.CorsoCorsista;
 
 class CorsoDAOTest {
 	private static Corso corso1;
@@ -22,6 +26,8 @@ class CorsoDAOTest {
 	private static Connection conn;
 	private static Corsista corsista1;
 	private static Corsista corsista2;
+	private static CorsoCorsista cc1;
+	private static CorsoCorsista cc2;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -57,9 +63,22 @@ class CorsoDAOTest {
 		corsista2.setNomeCorsista("Marco");
 		corsista2.setCognomeCorsista("Verde");
 		corsista2.setPrecedentiformativi(1);
+		
+		cc1 = new CorsoCorsista();
+		cc1.setCodCorso(2);
+		cc1.setCodCorsista(1);
+		
+		cc2 = new CorsoCorsista();
+		cc2.setCodCorso(2);
+		cc2.setCodCorsista(2);
+		
 		try {
+			CorsistaDAO.getFactory().create(conn, corsista1);
+			CorsistaDAO.getFactory().create(conn, corsista2);
 			CorsoDAO.getFactory().createCorso(conn, corso1);
 			CorsoDAO.getFactory().createCorso(conn, corso2);
+			CorsoCorsistaDAO.getFactory().create(conn, cc1);
+			CorsoCorsistaDAO.getFactory().create(conn, cc2);
 			System.out.println("Corso creato");
 		} catch (SQLException sql){
 			sql.printStackTrace();
@@ -134,11 +153,41 @@ class CorsoDAOTest {
 		}
 	}
 	
+	@Test
+	void testGetMigliorCorso() {
+		try {
+			String nomeCorso = CorsoDAO.getFactory().getMigliorCorso(conn);
+			assertNotNull(nomeCorso);
+			System.out.println("top corso: "+nomeCorso);
+		} catch (SQLException sql){
+			sql.printStackTrace();
+			fail(sql.getMessage());
+		}
+	}
+	
+	@Test
+	void testGetCorsiDisp() {
+		try {
+			Corso[] corsiDisp = CorsoDAO.getFactory().getCorsiDisp(conn);
+			assertNotNull(corsiDisp);
+			for(Corso c: corsiDisp)
+				System.out.println("nome corso disp: "+c.getNome());
+		}  catch (SQLException sql){
+			sql.printStackTrace();
+			fail(sql.getMessage());
+		}
+	}
+	
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		try {
+			cc1 = null;
+			cc2 = null;
+			conn.commit();
 			CorsoDAO.getFactory().deleteCorso(conn, 1);
 			CorsoDAO.getFactory().deleteCorso(conn, 2);
+			CorsistaDAO.getFactory().delete(conn, corsista1);
+			CorsistaDAO.getFactory().delete(conn, corsista2);
 			DBAccess.closeConnection();
 		} catch (SQLException sql){
 			sql.printStackTrace();
