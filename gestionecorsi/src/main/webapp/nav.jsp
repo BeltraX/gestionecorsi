@@ -18,8 +18,9 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="home.jsp">Home</a></li>
-				<li><a href="logout.jsp"> <span
-						class="glyphicon glyphicon-log-out"></span>Logout
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=user %></a></li>
+				<li><a href="index.jsp"> <span
+						class="glyphicon glyphicon-log-out"></span>&nbsp;Logout
 				</a></li>
 
 				<li></li>
