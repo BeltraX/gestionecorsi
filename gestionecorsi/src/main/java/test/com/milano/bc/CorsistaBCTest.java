@@ -1,5 +1,6 @@
 package test.com.milano.bc;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -24,8 +25,11 @@ class CorsistaBCTest {
 		corsista.setNomeCorsista("Luca");
 		corsista.setCognomeCorsista("Gialli");
 		corsista.setPrecedentiformativi(0);
+		boolean x;
 		try {
-			corsistaBC.create(corsista);
+			x=corsistaBC.create(corsista);
+			assertTrue(x);
+			
 		} catch (SQLException exc) {
 			exc.printStackTrace();
 			fail(exc.getMessage());
