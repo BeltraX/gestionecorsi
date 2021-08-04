@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.SQLException;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +29,11 @@ class AmministratoreBCTest {
 			exc.printStackTrace();
 			fail(exc.getMessage());
 		}
+	}
+	
+	@AfterEach
+	void tearDown() throws Exception {
+		amministratoreBC = null;
 	}
 
 }
