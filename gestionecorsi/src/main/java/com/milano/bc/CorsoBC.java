@@ -9,7 +9,6 @@ import com.milano.architecture.dao.CorsoDAO;
 import com.milano.architecture.dbaccess.DBAccess;
 import com.milano.bc.idgenerator.CorsoIdGenerator;
 import com.milano.bc.model.Corso;
-import com.milano.bc.validator.CorsistaValidator;
 import com.milano.bc.validator.CorsoValidator;
 
 public class CorsoBC {
