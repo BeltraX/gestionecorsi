@@ -3,12 +3,12 @@ package com.milano.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.milano.bc.AmministratoreBC;
 import com.milano.bc.model.Amministratore;
@@ -22,11 +22,12 @@ public class ControlloAdmin extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		int codice = Integer.parseInt(request.getParameter("codice"));
-
-		HttpSession session = request.getSession();
-		int i = (int) (session.getAttribute("tentativi"));
-
+		
+		ServletContext application = request.getServletContext();
+		int tentativi = (int)application.getAttribute("tentativi");
+		
 		Amministratore[] admin;
+		String redirect = "";
 		try {
 			if (nome != null && cognome != null && codice != 0) {
 				Amministratore utente = new Amministratore();
@@ -36,24 +37,28 @@ public class ControlloAdmin extends HttpServlet {
 				AmministratoreBC adminBC = new AmministratoreBC();
 				admin = adminBC.getAmministratori();
 				for (Amministratore a : admin) {
-					if (utente.equals(a)) {
-						session.setAttribute("nome", nome);
-						response.sendRedirect("home.jsp");
+					if (utente.getNome().equals(a.getNome()) && utente.getCognome().equals(a.getCognome()) && utente.getCodice() == a.getCodice()) {
+						redirect = "home.jsp";
+						break;
+					} else {
+						if (tentativi < 5) {
+							redirect = "index.jsp";
+						} else {
+							redirect = "tentativiEsauriti.jsp";
+						}
 					}
 				}
-
-				if (i < 6) {
-					response.sendRedirect("index.jsp");
-					i++;
-					session.setAttribute("tentativi", i);
-				}else {
-					response.sendRedirect("tentativiEsauriti.jsp");
+				if(redirect == "index.jsp") {
+					response.sendRedirect(redirect);
+				} else {
+					response.sendRedirect(redirect);
 				}
 			} else {
-				
+				response.sendRedirect("index.jsp");
 			}
 		} catch (ClassNotFoundException | IOException | SQLException exc) {
-
+			exc.printStackTrace();
+			throw new ServletException();
 		}
 	}
 }
