@@ -22,7 +22,7 @@ class DocenteBCTest {
 	@Test
 	void testGetAmministratori() {
 		try {
-			Docente[] docenti = docenteBC.getAmministratori();
+			Docente[] docenti = docenteBC.getDocenti();
 			assertNotNull(docenti);
 		} catch (SQLException exc) {
 			exc.printStackTrace();

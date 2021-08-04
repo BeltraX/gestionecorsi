@@ -15,7 +15,7 @@ public class DocenteBC {
 		conn = DBAccess.getConnection();
 	}
 	
-	public Docente[] getAmministratori() throws SQLException{
+	public Docente[] getDocenti() throws SQLException{
 		return DocenteDAO.getFactory().getDocenti(conn);
 	}
 }
