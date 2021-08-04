@@ -3,7 +3,6 @@
 <%
 CorsoBC cbc = new CorsoBC();
 %>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -11,16 +10,12 @@ CorsoBC cbc = new CorsoBC();
 <head>
 <%@include file="head.jsp"%>
 <title>Home</title>
-<%
-
-%>
 <link rel="stylesheet"
 	href="/<%=application.getServletContextName()%>/css/style.css">
 </head>
 <body>
 	<jsp:include page="nav.jsp"/>
 	<div class="container">
-
 		<table class="table table-hover" style="width: 100%;">
 			<thead>
 				<tr>
