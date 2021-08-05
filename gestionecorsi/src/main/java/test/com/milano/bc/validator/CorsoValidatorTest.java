@@ -1,9 +1,7 @@
 package test.com.milano.bc.validator;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 import org.junit.jupiter.api.AfterAll;
@@ -35,60 +33,42 @@ class CorsoValidatorTest {
 	void testCheckNome() {
 		boolean x = false;
 		x = cv.checkNome(corso);
-		if (x) {
-			System.out.println("Inserimento nome corretto");
-		} else
-			System.out.println("Inserimento nome errato");
+		assertTrue(x);
 	}
 	
 	@Test
 	void testCheckDataInizio() {
 		boolean x = false;
 		x = cv.checkDataInizio(corso);
-		if (x) {
-			System.out.println("Inserimento data inizio corretto");
-		} else
-			System.out.println("Inserimento data inizio errato");
+		assertTrue(x);
 	}
 	
 	@Test
 	void testCheckDataFine() {
 		boolean x = false;
 		x = cv.checkDataFine(corso);
-		if (x) {
-			System.out.println("Inserimento data fine corretto");
-		} else
-			System.out.println("Inserimento data fine errato");
+		assertTrue(x);
 	}
 	
 	@Test
 	void testCheckCommento() {
 		boolean x = false;
 		x = cv.checkCommento(corso);
-		if (x) {
-			System.out.println("Inserimento commento corretto");
-		} else
-			System.out.println("Inserimento commento errato");
+		assertTrue(x);
 	}
 	
 	@Test
 	void testCheckAula() {
 		boolean x = false;
 		x = cv.checkAula(corso);
-		if (x) {
-			System.out.println("Inserimento aula corretto");
-		} else
-			System.out.println("Inserimento aula errato");
+		assertTrue(x);
 	}
 	
 	@Test
 	void testCheckDocente() {
 		boolean x = false;
 		x = cv.checkDocente(corso);
-		if (x) {
-			System.out.println("Inserimento docente corretto");
-		} else
-			System.out.println("Inserimento docente errato");
+		assertTrue(x);
 	}
 	
 	@AfterAll

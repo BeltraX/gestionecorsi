@@ -5,7 +5,7 @@ html {
 
 body {
 	margin-bottom: 320px;
-	background-color: #9396ff;
+	background-color: white;
 }
 
 ::-webkit-scrollbar {
@@ -43,7 +43,7 @@ footer {
 	}
 	body {
 		margin-bottom: 500px;
-		background-color: #F9F9F9;
+		background-color: white;
 	}
 }
 

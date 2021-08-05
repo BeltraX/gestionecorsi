@@ -45,7 +45,7 @@ class CorsoDAOTest {
 		corso2 = new Corso();
 		corso2.setCodice(2);
 		corso2.setNome("MINECRAFT");
-		corso2.setDataInizio(new GregorianCalendar(2022,11,1).getTime());
+		corso2.setDataInizio(new GregorianCalendar(2019,11,1).getTime());
 		corso2.setDataFine(new GregorianCalendar(2022,11,12).getTime());
 		corso2.setCosto(1000);
 		corso2.setCommento("bello");

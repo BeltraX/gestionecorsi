@@ -142,12 +142,14 @@ public class CorsoDAO implements DAOConstants {
 		List<Corso> corsi = new ArrayList<Corso>();
 		while (rs.next()) {
 			int codCorso = rs.getInt(1);
+			long dataInizio = rs.getDate(3).getTime();
+			long dataOggi = new Date().getTime();
 			PreparedStatement ps = conn.prepareStatement(COUNT_PARTECIP_BYID);
 			ps.setInt(1, codCorso);
 			ResultSet rs2 = ps.executeQuery();
 			rs2.next();
 			int nPartecipanti = rs2.getInt(1);
-			if (nPartecipanti < 13) {
+			if (nPartecipanti < 13 && dataInizio > dataOggi) {
 				PreparedStatement ps2 = conn.prepareStatement(SELECT_CORSI_BYID);
 				ps2.setInt(1, codCorso);
 				ResultSet rs3 = ps2.executeQuery();
@@ -169,5 +171,18 @@ public class CorsoDAO implements DAOConstants {
 			arrayC[i] = corsi.get(i);
 		}
 		return arrayC;
+	}
+	
+	public int[] getCodCorsi(Connection conn, int codCorsista) throws SQLException{
+		PreparedStatement ps = conn.prepareStatement(SELECT_CORSO_CORSISTABYID);
+		ps.setInt(1, codCorsista);
+		ResultSet rs = ps.executeQuery();
+		rs.last();
+		int[] codCorsi = new int[rs.getRow()];
+		rs.beforeFirst();
+		for(int i = 0; rs.next(); i++) {
+			codCorsi[i] = rs.getInt(1);
+		}
+		return codCorsi;
 	}
 }

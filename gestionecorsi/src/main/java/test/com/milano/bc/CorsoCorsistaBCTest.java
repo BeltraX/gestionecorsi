@@ -1,5 +1,6 @@
 package test.com.milano.bc;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
@@ -59,6 +60,16 @@ class CorsoCorsistaBCTest {
 		} catch (SQLException exc) {
 			exc.printStackTrace();
 			fail(exc.getMessage());
+		}
+	}
+	
+	@Test
+	void testGetAll() {
+		try {
+			CorsoCorsista[] corsiCorsisti = corsoCorsistaBC.getAll();
+			assertNotNull(corsiCorsisti);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	

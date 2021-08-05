@@ -1,5 +1,6 @@
 package test.com.milano.architecture.dao;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
@@ -61,7 +62,18 @@ class CorsoCorsistaDAOTest {
 			fail(exc.getMessage());
 		}
 	}
-
+	
+	@Test
+	void testGetAll() {
+		try {
+			CorsoCorsista[] corsiCorsisti = CorsoCorsistaDAO.getFactory().getAll(conn);
+			assertNotNull(corsiCorsisti);
+		} catch (SQLException exc) {
+			exc.printStackTrace();
+			fail(exc.getMessage());
+		}
+	}
+	
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		try {

@@ -18,4 +18,8 @@ public class CorsoCorsistaBC {
 	public void create(CorsoCorsista cc) throws SQLException {
 		CorsoCorsistaDAO.getFactory().create(conn, cc);
 	}
+	
+	public CorsoCorsista[] getAll() throws SQLException {
+		return CorsoCorsistaDAO.getFactory().getAll(conn);
+	}
 }
