@@ -11,7 +11,7 @@
 <title>Elimina Corsi</title>
 </head>
 <body>
-<jsp:include page="nav.jsp"/>
+<%@include file="nav.jsp" %>
 	<div class="jumbotron">
 		<h3>Seleziona i corsi da eliminare</h3>
 	</div>
