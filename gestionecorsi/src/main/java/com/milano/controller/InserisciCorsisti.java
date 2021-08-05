@@ -16,7 +16,7 @@ import com.milano.bc.idgenerator.CorsistaIdGenerator;
 import com.milano.bc.model.Corsista;
 import com.milano.bc.model.CorsoCorsista;
 
-@WebServlet("/inserisciCorsisti")
+@WebServlet("/inserisciCorsi")
 public class InserisciCorsisti extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

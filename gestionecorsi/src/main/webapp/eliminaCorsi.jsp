@@ -12,8 +12,10 @@
 </head>
 <body>
 <jsp:include page="nav.jsp"/>
+	<div class="jumbotron">
+		<h3>Seleziona i corsi da eliminare</h3>
+	</div>
 	<div class="container">
-
 		<table class="table table-hover" style="width: 100%;">
 			<thead>
 				<tr>
