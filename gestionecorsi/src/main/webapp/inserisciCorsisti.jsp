@@ -222,8 +222,7 @@
 					<textarea name="commento" id="commento"
 						placeholder="Commento..." cols="40" rows="3"
 						class="form-control" style="resize: none"
-						maxlength="200">
-						</textarea>
+						maxlength="200"></textarea>
 					</div>
 				</div>
 				<div class="col-md-7 control-label" id="infoCommento"></div>
