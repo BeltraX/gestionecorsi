@@ -14,19 +14,18 @@ import javax.sql.rowset.RowSetProvider;
 
 import com.milano.bc.model.Corso;
 
-
-public class CorsoDAO implements DAOConstants{
+public class CorsoDAO implements DAOConstants {
 	private CachedRowSet rowSet;
-	
+
 	public static CorsoDAO getFactory() throws SQLException {
 		return new CorsoDAO();
 	}
-	
+
 	private CorsoDAO() throws SQLException {
-			rowSet = RowSetProvider.newFactory().createCachedRowSet();
+		rowSet = RowSetProvider.newFactory().createCachedRowSet();
 	}
-	
-	public void createCorso(Connection conn, Corso c ) throws SQLException {
+
+	public void createCorso(Connection conn, Corso c) throws SQLException {
 		rowSet.setCommand(SELECT_CORSI);
 		rowSet.execute(conn);
 		rowSet.moveToInsertRow();
@@ -42,14 +41,14 @@ public class CorsoDAO implements DAOConstants{
 		rowSet.moveToCurrentRow();
 		rowSet.acceptChanges();
 	}
-	
+
 	public void deleteCorso(Connection conn, int codCorso) throws SQLException {
 		PreparedStatement ps = conn.prepareStatement(DELETE_CORSO);
 		ps.setInt(1, codCorso);
 		ps.execute();
 		conn.commit();
 	}
-	
+
 	public void updateCorso(Connection conn, Corso c) throws SQLException {
 		PreparedStatement ps = conn.prepareStatement(UPDATE_CORSO);
 		ps.setString(1, c.getNome());
@@ -63,16 +62,14 @@ public class CorsoDAO implements DAOConstants{
 		ps.execute();
 		conn.commit();
 	}
-	
-	public Corso[] getCorsi(Connection conn) throws SQLException{
-		Statement stmt = conn.createStatement(
-				ResultSet.TYPE_SCROLL_INSENSITIVE, 
-				ResultSet.CONCUR_READ_ONLY);
+
+	public Corso[] getCorsi(Connection conn) throws SQLException {
+		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		ResultSet rs = stmt.executeQuery(SELECT_CORSI);
 		rs.last();
 		Corso[] corsi = new Corso[rs.getRow()];
 		rs.beforeFirst();
-		for(int i = 0; rs.next(); i++ ) {
+		for (int i = 0; rs.next(); i++) {
 			Corso c = new Corso();
 			c.setCodice(rs.getInt(1));
 			c.setNome(rs.getString(2));
@@ -87,43 +84,39 @@ public class CorsoDAO implements DAOConstants{
 		rs.close();
 		return corsi;
 	}
-	
+
 	public String getMigliorCorso(Connection conn) throws SQLException {
-		Statement stmt = conn.createStatement(
-				ResultSet.TYPE_SCROLL_INSENSITIVE, 
-				ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		ResultSet rs = stmt.executeQuery(SELECT_CORSI);
 		int partecip = 0;
 		String nomeCorso = "";
-		while(rs.next()) {
+		while (rs.next()) {
 			PreparedStatement ps = conn.prepareStatement(COUNT_PARTECIP_BYID);
 			ps.setInt(1, rs.getInt(1));
 			ResultSet rs2 = ps.executeQuery();
 			rs2.next();
 			int partecipantiCorso = rs2.getInt(1);
-			if(partecipantiCorso > partecip) {
+			if (partecipantiCorso > partecip) {
 				partecip = partecipantiCorso;
 				nomeCorso = rs.getString(2);
 			}
 		}
 		return nomeCorso;
 	}
-	
-	public Date getDataUltimoCorso(Connection conn) throws SQLException{
+
+	public Date getDataUltimoCorso(Connection conn) throws SQLException {
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(SELECT_DATA_ULTIMOCORSO);
 		rs.next();
 		return rs.getDate(1);
 	}
-	
+
 	public double getAvgCorso(Connection conn) throws SQLException {
-		Statement stmt = conn.createStatement(
-				ResultSet.TYPE_SCROLL_INSENSITIVE, 
-				ResultSet.CONCUR_READ_ONLY);
+		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		ResultSet rs = stmt.executeQuery(SELECT_CORSI);
 		int sommaG = 0;
 		int nCorsi = 0;
-		while(rs.next()) {
+		while (rs.next()) {
 			PreparedStatement ps = conn.prepareStatement(SELECT_DURATA_GG_CORSO);
 			ps.setInt(1, rs.getInt(1));
 			ResultSet rs2 = ps.executeQuery();
@@ -131,32 +124,30 @@ public class CorsoDAO implements DAOConstants{
 			int durataCorso = rs2.getInt(1);
 			int lavorativiCorso = durataCorso / 7;
 			sommaG += durataCorso - (lavorativiCorso * 2);
-			nCorsi ++;
+			nCorsi++;
 		}
-		return sommaG/nCorsi;
+		return sommaG / nCorsi;
 	}
-	
-	public int getNumCommenti(Connection conn) throws SQLException{
+
+	public int getNumCommenti(Connection conn) throws SQLException {
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(COUNT_COMMENTI);
 		rs.next();
 		return rs.getInt(1);
 	}
-	
-	public Corso[] getCorsiDisp(Connection conn) throws SQLException{
-		Statement stmt = conn.createStatement(
-				ResultSet.TYPE_SCROLL_INSENSITIVE, 
-				ResultSet.CONCUR_READ_ONLY);
+
+	public Corso[] getCorsiDisp(Connection conn) throws SQLException {
+		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		ResultSet rs = stmt.executeQuery(SELECT_CORSI);
 		List<Corso> corsi = new ArrayList<Corso>();
-		while(rs.next()) {
+		while (rs.next()) {
 			int codCorso = rs.getInt(1);
 			PreparedStatement ps = conn.prepareStatement(COUNT_PARTECIP_BYID);
 			ps.setInt(1, codCorso);
 			ResultSet rs2 = ps.executeQuery();
 			rs2.next();
 			int nPartecipanti = rs2.getInt(1);
-			if(nPartecipanti < 13) {
+			if (nPartecipanti < 13) {
 				PreparedStatement ps2 = conn.prepareStatement(SELECT_CORSI_BYID);
 				ps2.setInt(1, codCorso);
 				ResultSet rs3 = ps2.executeQuery();
@@ -174,7 +165,7 @@ public class CorsoDAO implements DAOConstants{
 			}
 		}
 		Corso[] arrayC = new Corso[corsi.size()];
-		for(int i = 0; i < arrayC.length; i++) {
+		for (int i = 0; i < arrayC.length; i++) {
 			arrayC[i] = corsi.get(i);
 		}
 		return arrayC;

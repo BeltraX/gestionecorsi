@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -32,5 +33,15 @@ class DocenteDAOTest {
 			fail(exc.getMessage());
 		}
 	}
-
+	
+	@Test
+	void testGetCorsiDocente() {
+		try {
+			Set<Docente> docenti = DocenteDAO.getFactory().getCorsiDocente(conn);
+			assertNotNull(docenti);
+		}  catch (SQLException sql){
+			sql.printStackTrace();
+			fail(sql.getMessage());
+		}
+	}
 }
