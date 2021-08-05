@@ -5,37 +5,335 @@ html {
 
 body {
 	margin-bottom: 320px;
+	background-color: #9396ff;
 }
 
 ::-webkit-scrollbar {
 	display: none;
 }
 
-.navbar-inverse {
-	background-color: #000030;
-}
-
-footer nav {
-	float: left;	
-	background-color: #111;
-	color: #808080;
+.navbar-brand {
+	font-family: Helvetica, Arial, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 16px;
 }
 
 footer {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 30%;
-	color: #808080;
+	height: 300px;
+	background-color: #00012b;
+	color: white;
+	font-family: Helvetica, Arial, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 16px;
 }
 
-.responsive {
-	width: auto;
-	height: auto;
+@media screen and (max-width: 736px) {
+	footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 480px;
+		background-color: #00012b;
+		color: white;
+	}
+	body {
+		margin-bottom: 500px;
+		background-color: #F9F9F9;
+	}
 }
 
 p.copyright {
 	clear: both;
 	margin-left: 30px;
 	padding-bottom: 30px;
+}
+
+.active {
+	color: #666aff /* primary super-lightcolor*/;
+	background-color: #666aff /* primary lightcolor*/;
+}
+
+.active-dropdown {
+	color: #9396ff /* primary super-lightcolor*/;
+	background-color: #666aff /* primary lightcolor*/;
+}
+
+nav {
+	height: 100%;
+	background-color: #666aff;
+	/* primary lightcolor* /* sfondo menu mobile*/
+	position: fixed;
+	width: 100%;
+	margin-top: 54px;
+	visibility: hidden;
+	overflow: auto; /* permette lo scroll quando il menu è aperto*/
+}
+
+nav ul {
+	padding-bottom: 54px;
+}
+
+nav ul li a {
+	padding: 16px 0 16px 32px;
+	display: block;
+	color: #fbfafa;
+	font-family: Helvetica, Arial, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 16px;
+	transition: background-color 0.3s ease;
+}
+
+.submenu {
+	color: #9396ff /* primary super-lightcolor*/;
+	padding-left: 55px;
+	padding-bottom: 5px;
+}
+
+nav ul li ul {
+	padding-left: 0;
+	padding-bottom: 0;
+}
+
+nav ul li ul li a {
+	font-family: Helvetica, Arial, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 16px;
+	padding: 10px 0 10px 55px;
+	border: hidden;
+}
+
+.lingua {
+	border-top: 1px solid #666aff /* primary lightcolor*/;
+}
+
+/* ----------------- div bar per l'attivazione del menu ------------------ */
+#bar {
+	background-color: #00012b /* primary color*/;
+	height: 54px;
+	width: 100%;
+	z-index: 2;
+	position: fixed;
+	box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.4);
+}
+
+#bar #logo {
+	float: right;
+	margin-right: 12px;
+}
+
+/* ----------------- Hamburger animation ------------------ */
+#hamburger {
+	display: none;
+}
+
+.menuicon {
+	position: fixed;
+	height: 54px;
+	width: 54px;
+	margin-left: 5px;
+	z-index: 3;
+}
+
+.menuicon  span {
+	display: block;
+	top: 25px;
+	width: 40px;
+	height: 3px;
+	left: 8px;
+	background-color: #fff;
+	position: relative;
+	border-radius: 20px;
+	transition-duration: 0;
+	transition-delay: .1s;
+}
+
+.menuicon  span::after, .menuicon  span::before {
+	display: block;
+	position: absolute;
+	width: 40px;
+	height: 3px;
+	background-color: #fff;
+	border-radius: 20px;
+	transition-duration: .1s;
+	-webkit-transition-delay: .1s, 0;
+	transition-delay: .1s, 0;
+}
+
+.menuicon  span::before {
+	margin-top: -10px;
+}
+
+.menuicon  span::after {
+	margin-top: 10px;
+}
+
+#hamburger:checked ~ .menuicon span {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+#hamburger:checked ~ .menuicon span::before {
+	margin-top: 0px;
+	-webkit-transition-delay: 0, .3s;
+	-moz-transition-delay: 0, .3s;
+	-ms-transition-delay: 0, .3s;
+	-o-transition-delay: 0, .3s;
+	transition-delay: 0, .3s;
+}
+
+#hamburger:checked ~ .menuicon span::after {
+	margin-top: 0px;
+	-webkit-transition-delay: 0, .3s;
+	-moz-transition-delay: 0, .3s;
+	-ms-transition-delay: 0, .3s;
+	-o-transition-delay: 0, .3s;
+	transition-delay: 0, .3s;
+}
+
+#hamburger:checked ~ .menuicon span::before {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#hamburger:checked ~ .menuicon span::after {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+@media screen and (min-width: 980px) {
+	.menuicon {
+		display: none; /* togliere icona hambuger icon */
+	}
+	#bar #logo {
+		float: left;
+		margin-left: 12px;
+	}
+	nav {
+		z-index: 3;
+		margin-top: 19px;
+		height: auto;
+		background-color: transparent;
+		transition: none;
+		width: auto;
+		float: right;
+		right: 12px;
+		visibility: visible;
+		font-family: Helvetica, Arial, sans-serif;
+		font-style: italic;
+		font-weight: bold;
+		font-size: 16px;
+		overflow: inherit;
+		font-style: italic;
+		font-weight: bold;
+		font-size: 16px;
+	}
+	.active {
+		background-color: transparent;
+		color: #9396ff /* primary super-lightcolor*/;
+	}
+	.active-dropdown {
+		color: #fff;
+		background-color: #666aff /* primary lightcolor*/;
+	}
+	nav ul {
+		padding: 0;
+	}
+	nav ul li a {
+		padding: 0;
+		display: inline;
+		font-family: Helvetica, Arial, sans-serif;
+		font-style: italic;
+		font-weight: bold;
+		font-size: 16px;
+		color: #fff;
+	}
+	nav ul li a:hover {
+		background-color: transparent;
+		color: #9396ff /* primary super-lightcolor*/;
+	}
+	.submenu {
+		padding-left: 0;
+		color: #FFFFFF;
+	}
+	nav ul li {
+		margin: 0;
+		float: left;
+		position: relative;
+		padding: 0 16px;
+	}
+	.submenu::after {
+		content: url(img/arrow-down.svg);
+		float: right;
+		padding-left: 6px;
+	}
+	.lingua {
+		border-top: 0;
+		border-left: solid 1px #fff;
+		float: left;
+	}
+}
+
+/* ----------------- dropdown - attivare il menu a tendina ------------------ */
+nav ul li ul {
+	position: fixed;
+	height: 0;
+	overflow: hidden;
+	background-color: #00012b /* primary color*/
+}
+
+nav ul li:hover ul {
+	height: auto;
+	padding-top: 14px;
+	position: absolute;
+	right: 0;
+}
+
+nav ul li ul li {
+	font-family: Helvetica, Arial, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 16px;
+	float: none;
+	padding: 0;
+	min-width: 160px;
+	border-top: 1px solid #666aff /* primary lightcolor*/;
+}
+
+nav ul li ul li a {
+	padding: 16px 32px;
+	display: block;
+	background-color: #00012b /* primary color*/;
+	color: #ffffff;
+	font-family: Helvetica, Arial, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+nav ul li ul li a:hover {
+	background-color: #666aff /* primary lightcolor*/;
+	color: #9396ff /* primary super-lightcolor*/;
+}
+
+.submenu::after {
+	content: url(img/arrow-down.svg);
+	float: right;
+	padding-left: 6px;
+}
+
+.page-header {
+	margin-top: 10%;
+	margin-bottom: 5%;
 }

@@ -1,34 +1,31 @@
-<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#menu">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="home.jsp">Corsi</a> <a
-				class="navbar-brand" href="inserisciCorsisti.jsp">Inserisci
-				corsisti</a> <a class="navbar-brand" href="eliminaCorsi.jsp">Elimina
-				corsi</a> <a class="navbar-brand" href="statistiche.jsp">Statistiche</a>
-		</div>
-		<div class="collapse navbar-collapse" id="menu">
-			<%
-			String user = (String) session.getAttribute("username");
-			%>
-			<ul class="nav navbar-nav">
+<input type="checkbox" id="hamburger" />
+<label class="menuicon" for="hamburger"> <span></span>
+</label>
 
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="home.jsp">Home</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=user%></a></li>
-				<li><a href="index.jsp"> <span
-						class="glyphicon glyphicon-log-out"></span>&nbsp;Logout
-				</a></li>
-
-				<li></li>
-
-			</ul>
-		</div>
+<div id="bar">
+	<div id="logo">
+		<a href="#"><img src="img\sadly.png" alt="your logo"
+			title="your logo" height="54"></a>
 	</div>
+	<!--/fine logo-->
+</div>
+<!--/fine bar-->
+
+<nav class="menu-visibility">
+	<ul>
+		<li><a class="active" href="home.jsp">home</a></li>
+		<li><a class="submenu" href="#">sezioni</a>
+			<ul>
+				<li><a href="inserisciCorsisti.jsp">nuovo corso</a></li>
+				<li><a href="eliminaCorsi.jsp">elimina</a></li>
+				<li><a href="statistiche.jsp">statistiche</a></li>
+			</ul></li>
+		<%
+		String user = (String) session.getAttribute("username");
+		%>
+		<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=user%></a></li>
+		<li><a href="index.jsp"> <span
+				class="glyphicon glyphicon-log-out"></span>logout
+		</a></li>
+	</ul>
 </nav>
