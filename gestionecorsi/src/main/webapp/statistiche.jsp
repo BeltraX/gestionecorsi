@@ -18,57 +18,59 @@
 <body>
 	<%@include file="nav.jsp"%>
 	<div class="container">
-		<table class="table table-hover" style="width: 100%;">
-			<thead>
-				<tr>
-					<th style="width: 300px;">Numero corsisti totali</th>
-					<th style="width: 300px;">Corso pi&ugrave frequentato</th>
-					<th style="width: 300px;">Data inizio ultimo corso</th>
-					<th style="width: 300px;">AVG durata</th>
-					<th style="width: 300px;">Numero commenti</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%
-				CorsistaBC corsistaBC = new CorsistaBC();
-				CorsoBC corsoBC = new CorsoBC();
-				%>
-				<tr>
-					<td><%=corsistaBC.getTotale()%></td>
-					<td><%=corsoBC.getMigliorCorso()%></td>
-					<td><%=corsoBC.getDataUltimoCorso()%></td>
-					<td><%=corsoBC.getAvgCorso()%></td>
-					<td><%=corsoBC.getNumCommenti()%></td>
-				</tr>
-			</tbody>
-		</table>
-		<h3>Docenti con pi&ugrave tipologie di corso</h3>
-		<table class="table table-hover" style="width: 100%;">
-			<thead>
-				<tr>
-					<th style="width: 300px;">Nome</th>
-					<th style="width: 300px;">Cognome</th>
-					<th style="width: 300px;">CV</th>
-					<th style="width: 300px;">Codice</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%
-				DocenteBC docenteBC = new DocenteBC();
-				HashSet<Docente> docenti = docenteBC.getNumCorsi();
-				for(Docente d:docenti){
-				%>
-				<tr>
-					<td><%=d.getNomeDocente()%></td>
-					<td><%=d.getCognomeDocente()%></td>
-					<td><%=d.getCvDocente()%></td>
-					<td><%=d.getCodDocente()%></td>
-				</tr>
-				<%
-					} 
-				%>
-			</tbody>
-		</table>
+		<div class="page-header" id="page-header">
+			<table class="table table-hover" style="width: 100%;">
+				<thead>
+					<tr>
+						<th style="width: 300px;">Numero corsisti totali</th>
+						<th style="width: 300px;">Corso pi&ugrave frequentato</th>
+						<th style="width: 300px;">Data inizio ultimo corso</th>
+						<th style="width: 300px;">AVG durata</th>
+						<th style="width: 300px;">Numero commenti</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					CorsistaBC corsistaBC = new CorsistaBC();
+					CorsoBC corsoBC = new CorsoBC();
+					%>
+					<tr>
+						<td><%=corsistaBC.getTotale()%></td>
+						<td><%=corsoBC.getMigliorCorso()%></td>
+						<td><%=corsoBC.getDataUltimoCorso()%></td>
+						<td><%=corsoBC.getAvgCorso()%></td>
+						<td><%=corsoBC.getNumCommenti()%></td>
+					</tr>
+				</tbody>
+			</table>
+			<h3>Docenti con pi&ugrave tipologie di corso</h3>
+			<table class="table table-hover" style="width: 100%;">
+				<thead>
+					<tr>
+						<th style="width: 300px;">Nome</th>
+						<th style="width: 300px;">Cognome</th>
+						<th style="width: 300px;">CV</th>
+						<th style="width: 300px;">Codice</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					DocenteBC docenteBC = new DocenteBC();
+					HashSet<Docente> docenti = docenteBC.getNumCorsi();
+					for (Docente d : docenti) {
+					%>
+					<tr>
+						<td><%=d.getNomeDocente()%></td>
+						<td><%=d.getCognomeDocente()%></td>
+						<td><%=d.getCvDocente()%></td>
+						<td><%=d.getCodDocente()%></td>
+					</tr>
+					<%
+					}
+					%>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<footer>
 		<%@include file="footer.html"%>
