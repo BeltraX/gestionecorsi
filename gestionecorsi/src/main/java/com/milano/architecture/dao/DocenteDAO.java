@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 
-import com.milano.bc.model.Corso;
 import com.milano.bc.model.Docente;
 
 public class DocenteDAO implements DAOConstants {
@@ -40,29 +39,10 @@ public class DocenteDAO implements DAOConstants {
 	
 	public HashSet<Docente> getCorsiDocente(Connection conn) throws SQLException {
 		Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-		ResultSet rs = stmt.executeQuery(SELECT_CORSI);
+		ResultSet rs = stmt.executeQuery(SELECT_DOCENTI);
 		HashSet<Docente> docenti = new HashSet<Docente>();
-		rs.last();
-		Corso[] corsi = new Corso[rs.getRow()];
-		rs.beforeFirst();
-		//carico i corsi in un array
-		for (int i = 0; rs.next(); i++) {
-			Corso c = new Corso();
-			c.setCodice(rs.getInt(1));
-			c.setNome(rs.getString(2));
-			c.setDataInizio(rs.getDate(3));
-			c.setDataFine(rs.getDate(4));
-			c.setCosto(rs.getDouble(5));
-			c.setCommento(rs.getString(6));
-			c.setAula(rs.getString(7));
-			c.setCodDocente(rs.getInt(8));
-			corsi[i] = c;
-		}
-		rs.beforeFirst();
-		//doppio ciclo, uno per scorrere l'array di corsi
-		//l'altro per paragonare il codice del corso per vedere ripetizione
-		for (int i = 0; rs.next(); i++) {
-			int codDoc = corsi[i].getCodDocente();
+		while(rs.next()) {
+			int codDoc = rs.getInt(4);
 			PreparedStatement ps = conn.prepareStatement(COUNT_DOCENTI);
 			ps.setInt(1, codDoc);
 			ResultSet rs2 = ps.executeQuery();

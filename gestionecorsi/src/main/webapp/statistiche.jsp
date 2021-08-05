@@ -16,7 +16,7 @@
 	href="/<%=application.getServletContextName()%>/css/style.css">
 </head>
 <body>
-	<%@include page="nav.jsp"  %>
+	<%@include file="nav.jsp"%>
 	<div class="container">
 		<table class="table table-hover" style="width: 100%;">
 			<thead>

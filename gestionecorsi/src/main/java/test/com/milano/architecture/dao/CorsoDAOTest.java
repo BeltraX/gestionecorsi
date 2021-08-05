@@ -184,8 +184,8 @@ class CorsoDAOTest {
 			cc1 = null;
 			cc2 = null;
 			conn.commit();
-			//CorsoDAO.getFactory().deleteCorso(conn, 1);
-			//CorsoDAO.getFactory().deleteCorso(conn, 2);
+			CorsoDAO.getFactory().deleteCorso(conn, 1);
+			CorsoDAO.getFactory().deleteCorso(conn, 2);
 			CorsistaDAO.getFactory().delete(conn, corsista1);
 			CorsistaDAO.getFactory().delete(conn, corsista2);
 			DBAccess.closeConnection();
