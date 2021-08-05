@@ -16,7 +16,7 @@ import com.milano.bc.idgenerator.CorsistaIdGenerator;
 import com.milano.bc.model.Corsista;
 import com.milano.bc.model.CorsoCorsista;
 
-@WebServlet("/inserisciCorsi")
+@WebServlet("/inserisciCorsisti")
 public class InserisciCorsisti extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,6 +27,7 @@ public class InserisciCorsisti extends HttpServlet {
 		Corsista corsista = new Corsista();
 		
 		try {
+			corsista.setCodCorsista(1);
 			corsista.setNomeCorsista(request.getParameter("nome"));
 			corsista.setCognomeCorsista(request.getParameter("cognome"));
 			corsista.setPrecedentiformativi(Integer.parseInt(request.getParameter("preformativi")));
@@ -37,8 +38,10 @@ public class InserisciCorsisti extends HttpServlet {
 				corsoCorsista.setCodCorso(Integer.parseInt(request.getParameter("corso")));
 				CorsoCorsistaBC corsoCorsistaBC = new CorsoCorsistaBC();
 				corsoCorsistaBC.create(corsoCorsista);
+				response.sendRedirect("home.jsp");
 			} else {
-				
+				session.setAttribute("flag", true);
+				response.sendRedirect("inserisciCorsisti.jsp");
 			}
 			
 		} catch (SQLException | ClassNotFoundException exc) {

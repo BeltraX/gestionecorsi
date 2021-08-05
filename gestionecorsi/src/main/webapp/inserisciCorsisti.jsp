@@ -10,14 +10,24 @@
 <head>
 <%@include file="head.jsp"%>
 <title>Inserisci Corsisti</title>
+<link rel="stylesheet"
+	href="/<%=application.getServletContextName()%>/css/style.css">
 </head>
 <body>
+	<jsp:include page="nav.jsp" />
 <%
 	
 %>
 <div class="container">
 	<div class="page-header" id="page-header">
 		<h3>Inserire i dati del corsista</h3>
+		<%
+			if(session.getAttribute("flag") != null){
+		%>
+		<h3>Reinserire i dati del corsista correttamente</h3>
+		<%
+			}
+		%>
 	</div>
 	
 	<form action="/<%=application.getServletContextName()%>/inserisciCorsisti" method="post"
@@ -114,6 +124,9 @@
 	
 	</form>
 </div>
+<footer>
+	<%@include file="footer.html"%>
+</footer>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -124,9 +137,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <h3 class="modal-title" id="exampleModalLabel">Crea Nuovo Corso</h3>
+        <%
+			if(session.getAttribute("flagCorso") != null){
+		%>
+		<h3>Reinserire i dati del corso correttamente</h3>
+		<%
+			}
+		%>
       </div>
       <div class="modal-body">
-        <form action="/<%=application.getServletContextName()%>/inserisciCorso" method="post"
+        <form action="/<%=application.getServletContextName()%>/inserisciCorsi" method="post"
 		id="insCorsoForm" class="form-horizontal">
 			<div class="form-group">
 				<label class="col-md-2 control-label">Corso</label>
@@ -264,6 +284,6 @@
     </div>
   </div>
 </div>
-
+	
 </body>
 </html>
