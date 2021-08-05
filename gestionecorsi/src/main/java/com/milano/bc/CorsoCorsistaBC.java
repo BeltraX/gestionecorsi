@@ -22,4 +22,8 @@ public class CorsoCorsistaBC {
 	public CorsoCorsista[] getAll() throws SQLException {
 		return CorsoCorsistaDAO.getFactory().getAll(conn);
 	}
+	
+	public int[] getCodCorsi(int codCorsista) throws SQLException {
+		return CorsoCorsistaDAO.getFactory().getCodCorsi(conn,codCorsista);
+	}
 }

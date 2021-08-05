@@ -24,7 +24,7 @@
 		String user = (String) session.getAttribute("username");
 		%>
 		<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<%=user%></a></li>
-		<li><a href="index.jsp"> <span
+		<li><a href="logout.jsp"> <span
 				class="glyphicon glyphicon-log-out"></span>logout
 		</a></li>
 	</ul>

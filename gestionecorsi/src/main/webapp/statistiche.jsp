@@ -80,7 +80,7 @@
 						%>
 						<td><%=c.getCodCorsista()%></td>
 						<td><form
-								action="/<%=application.getServletContextName()%>/getCorsiCorsista"
+								action="/<%=application.getServletContextName()%>/elencoCorsiCorsista.jsp"
 								method="post">
 								<input type="hidden" name="cod" value="<%=c.getCodCorsista()%>">
 								<button type="submit" class="btn btn-info btn-sm">

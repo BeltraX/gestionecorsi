@@ -73,6 +73,16 @@ class CorsoCorsistaBCTest {
 		}
 	}
 	
+	@Test
+	void testGetCodCorsi() {
+		try {
+			int[] codCorsi = corsoCorsistaBC.getCodCorsi(1);
+			assertNotNull(codCorsi);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		try {

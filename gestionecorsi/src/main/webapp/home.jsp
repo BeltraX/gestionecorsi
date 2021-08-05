@@ -1,8 +1,5 @@
 <%@page import="com.milano.bc.model.Corso"%>
 <%@page import="com.milano.bc.CorsoBC"%>
-<%
-CorsoBC cbc = new CorsoBC();
-%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -15,7 +12,7 @@ CorsoBC cbc = new CorsoBC();
 
 </head>
 <body>
-	<jsp:include page="nav.jsp" />
+	<%@ include file="nav.jsp" %>
 
 	<div class="container">
 		<div class="page-header" id="page-header">
@@ -33,6 +30,7 @@ CorsoBC cbc = new CorsoBC();
 				</thead>
 				<tbody>
 					<%
+					CorsoBC cbc = new CorsoBC();
 					Corso[] corsi = cbc.getCorsi();
 					for (Corso i : corsi) {
 					%>

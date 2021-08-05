@@ -172,17 +172,4 @@ public class CorsoDAO implements DAOConstants {
 		}
 		return arrayC;
 	}
-	
-	public int[] getCodCorsi(Connection conn, int codCorsista) throws SQLException{
-		PreparedStatement ps = conn.prepareStatement(SELECT_CORSO_CORSISTABYID);
-		ps.setInt(1, codCorsista);
-		ResultSet rs = ps.executeQuery();
-		rs.last();
-		int[] codCorsi = new int[rs.getRow()];
-		rs.beforeFirst();
-		for(int i = 0; rs.next(); i++) {
-			codCorsi[i] = rs.getInt(1);
-		}
-		return codCorsi;
-	}
 }

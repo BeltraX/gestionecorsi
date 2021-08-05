@@ -1,4 +1,3 @@
-<%@page import="java.util.ArrayList"%>
 <%@page import="com.milano.bc.model.CorsoCorsista"%>
 <%@page import="com.milano.bc.CorsoCorsistaBC"%>
 <%@page import="com.milano.bc.model.Corso"%>
@@ -16,6 +15,9 @@
 </head>
 <body>
 	<%@include file="nav.jsp"%>
+	<%
+	int codCorsista = Integer.parseInt(request.getParameter("cod"));
+	%>
 	<div class="container">
 		<div class="page-header" id="page-header">
 			<h3>Corsi per il corsista</h3>
@@ -33,8 +35,13 @@
 				</thead>
 				<tbody>
 					<%
-						ArrayList<Corso> corsi = (ArrayList<Corso>)session.getAttribute("corsi");
+					CorsoBC corsoBC = new CorsoBC();
+					Corso[] corsi = corsoBC.getCorsi();
+					CorsoCorsistaBC corsoCorsista = new CorsoCorsistaBC();
+					int[] codCorsi = corsoCorsista.getCodCorsi(codCorsista);
+					for(int i : codCorsi){
 						for(Corso c : corsi){
+							if(i == c.getCodice()){
 					%>
 					<tr>
 						<td><%=c.getNome()%></td>
@@ -46,7 +53,9 @@
 						<td><%=c.getCodDocente()%></td>
 					</tr>
 					<%
-						}
+					}
+					}
+					}
 					%>
 				</tbody>
 			</table>

@@ -74,6 +74,17 @@ class CorsoCorsistaDAOTest {
 		}
 	}
 	
+	@Test
+	void testGetCodCorsi() {
+		try {
+			int[] corsiCorsisti = CorsoCorsistaDAO.getFactory().getCodCorsi(conn,1);
+			assertNotNull(corsiCorsisti);
+		} catch (SQLException exc) {
+			exc.printStackTrace();
+			fail(exc.getMessage());
+		}
+	}
+	
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		try {
